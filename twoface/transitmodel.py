@@ -1,4 +1,4 @@
-import twoface
+from . import _twoface
 import numpy as np
 
 deg_to_rad = np.pi / 180.
