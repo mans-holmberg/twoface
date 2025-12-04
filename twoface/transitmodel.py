@@ -106,15 +106,15 @@ class TransitModel:
         else:
             raise Exception('Only supports quadratic, nonlinear, or custom limb-darkening laws.')
         
-        twoface._sky(self.num_ints, self.t, t0, per, a, inc * deg_to_rad, ecc, w * deg_to_rad, self.planetz, self.planetx, self.planety, self.psi)
+        _twoface._sky(self.num_ints, self.t, t0, per, a, inc * deg_to_rad, ecc, w * deg_to_rad, self.planetz, self.planetx, self.planety, self.psi)
         self.psi += phi * deg_to_rad - np.pi/2
 
         if (rp == rp2) and self.use_spotrod:
-            twoface._circleangle(self.r, rp, self.planetz, self.planetangle)
-            twoface._integratetransit(self.planetx, self.planety, self.planetz, rp, self.r, self.f,
+            _twoface._circleangle(self.r, rp, self.planetz, self.planetangle)
+            _twoface._integratetransit(self.planetx, self.planety, self.planetz, rp, self.r, self.f,
                                              spotx, spoty, spotradius, spotcontrast, self.planetangle, self.model)
         else:
-            twoface._integratetransit_asymmetric(self.num_ints, self.num_rings, self.num_spots, self.r, self.f, self.planetx, self.planety, self.planetz, self.psi, rp2, rp, 
+            _twoface._integratetransit_asymmetric(self.num_ints, self.num_rings, self.num_spots, self.r, self.f, self.planetx, self.planety, self.planetz, self.psi, rp2, rp, 
                                          spotx, spoty, spotradius, spotcontrast, self.spotcenterdistance, self.bounds, self.model)
 
         return self.model
