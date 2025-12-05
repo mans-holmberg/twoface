@@ -128,10 +128,13 @@ void integratetransit(int m, int n, int k, double *planetx, double *planety, dou
           // Calculate distance of spot center and planet center for this moment.
           d = sqrt(pow(*(planetx+M) - *(spotx+K) * sqrt(1.0 - *(spotradius+K) * *(spotradius+K)), 2.0) + pow(*(planety+M) - *(spoty+K) * sqrt(1.0 - *(spotradius+K) * *(spotradius+K)), 2.0));
           // Calculate central angle between planet and spot.
-          if ((*(spotcenterdistance+K) == 0) || (*(z+M) == 0)) {
+          if ((*(spotcenterdistance+K) < 1e-12) || (*(z+M) < 1e-12)) {
             planetspotangle = 0.0;
           } else {
-            planetspotangle = acos((pow(*(z+M),2.0) + pow(*(spotcenterdistance+K),2.0) - d*d)/(2.0 * *(z+M) * *(spotcenterdistance+K)));
+            double c = (pow(*(z+M), 2.0) + pow(*(spotcenterdistance+K), 2.0) - d*d) / (2.0 * *(z+M) * *(spotcenterdistance+K));
+            if (c >  1.0) c =  1.0;
+            if (c < -1.0) c = -1.0;
+            planetspotangle = acos(c);
           }
           // Cycle through annuli.
           for (N=0; N<n; N++) {
