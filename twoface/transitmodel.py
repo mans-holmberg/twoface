@@ -35,7 +35,7 @@ class TransitParams:
 
 
 class TransitModel:
-    def __init__(self, params, t, num_rings=1500, limb_dark_function=None, use_spotrod=True, copy_model=True):
+    def __init__(self, params, t, num_rings=1500, limb_dark_function=None, use_spotrod=True):
         self.params = params
         self.t = t
         self.num_ints = t.shape[0]
@@ -57,7 +57,6 @@ class TransitModel:
 
         self.limb_dark_function = limb_dark_function
         self.use_spotrod = use_spotrod
-        self.copy_model = copy_model
 
 
     def light_curve(self, params=None):
@@ -117,7 +116,4 @@ class TransitModel:
         else:
             _twoface._integratetransit_asymmetric(self.num_ints, self.num_rings, self.num_spots, self.r, self.f, self.planetx, self.planety, self.planetz, self.psi, rp2, rp, 
                                          spotx, spoty, spotradius, spotcontrast, self.spotcenterdistance, self.bounds, self.model)
-        if self.copy_model:
-            return np.copy(self.model)
-        else:
-            return self.model
+        return np.copy(self.model)
