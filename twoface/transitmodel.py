@@ -27,11 +27,11 @@ class TransitParams:
         self.u = []  # limb darkening coefficients
         self.limb_dark = np.nan
 
-        self.nspot = 0
-        self.spotx = []
-        self.spoty = []
-        self.spotradius = []
-        self.spotcontrast = []
+        self.num_spots = 0
+        self.spot_mu = []
+        self.spot_phi = []
+        self.spot_radius = []
+        self.spot_f = []
 
 
 class TransitModel:
@@ -40,15 +40,15 @@ class TransitModel:
         self.t = t
         self.num_ints = t.shape[0]
         self.num_rings = num_rings
-        self.num_spots = 0
+        self.num_spots = params.num_spots
 
         self.r = np.linspace(1.0 / (2 * num_rings), 1.0 - 1.0 / (2 * num_rings), num_rings)
         self.planetangle = np.zeros((self.num_ints, self.num_rings))
         self.model = np.zeros((self.num_ints))
 
         self.f = np.zeros((self.num_rings))
-        self.spotcenterdistance = np.zeros((self.num_rings))
-        self.bounds = np.zeros((8))
+        self.spotcenterdistance = np.zeros((self.num_spots + self.num_spots * self.num_rings + self.num_rings))
+        self.bounds = np.zeros((8 + 2 * self.num_spots))
 
         self.planetz =  np.zeros((self.num_ints))
         self.planetx =  np.zeros((self.num_ints))
@@ -76,8 +76,8 @@ class TransitModel:
         rp2 = params.rp2
         phi = params.phi
 
-        if self.num_spots != params.nspot:
-            self.num_spots = params.nspot
+        if self.num_spots != params.num_spots:
+            self.num_spots = params.num_spots
             self.spotcenterdistance = np.zeros((self.num_spots + self.num_spots * self.num_rings + self.num_rings))
             self.bounds = np.zeros((8 + 2 * self.num_spots))
 
