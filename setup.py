@@ -25,7 +25,7 @@ setup(name="twoface",
     description="Transit light-curve modeling for asymmetric planets transiting spotted stars.",
     ext_modules=cythonize(extensions),
     include_dirs=[numpy.get_include()],
-    install_requires=["numpy"],
+    install_requires=["numpy, Cython"],
     zip_safe=False,
     cmdclass={'build_ext': build_ext},
 )
