@@ -35,7 +35,7 @@ class TransitParams:
 
 
 class TransitModel:
-    def __init__(self, params, t, num_rings=1500, limb_dark_function=None, use_spotrod=True):
+    def __init__(self, params, t, num_rings=1500, limb_dark_function=None, use_spotrod=False):
         self.params = params
         self.t = t
         self.num_ints = t.shape[0]
