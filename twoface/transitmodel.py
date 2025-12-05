@@ -111,7 +111,7 @@ class TransitModel:
 
         if (rp == rp2) and self.use_spotrod:
             _twoface._circleangle(self.r, rp, self.planetz, self.planetangle)
-            _twoface._integratetransit(self.planetx, self.planety, self.planetz, rp, self.r, self.f,
+            _twoface._integratetransit(self.num_ints, self.num_rings, self.num_spots, self.planetx, self.planety, self.planetz, rp, self.r, self.f,
                                              spotx, spoty, spotradius, spotcontrast, self.planetangle, self.model)
         else:
             _twoface._integratetransit_asymmetric(self.num_ints, self.num_rings, self.num_spots, self.r, self.f, self.planetx, self.planety, self.planetz, self.psi, rp2, rp, 
