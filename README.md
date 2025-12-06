@@ -1,6 +1,6 @@
 # twoface: transit lightcurves for asymmetric planets transiting spotted stars
 
-This repository contains `twoface`, an exoplanet transit model for asymmetric planets transiting spotted stars. The code is named after the Batman villain Two-Face, reflecting its ability to model planets with asymmetric, two-sided silhouettes as they cross spotted, troublesome stellar surfaces. It builds upon the numerical integration framework and architecture of `spotrod` [Béky, Kipping & Holman 2014](https://ui.adsabs.harvard.edu/abs/2014MNRAS.442.3686B/abstract) and the geometry of `catwoman` [Jones & Espinoza 2020](https://doi.org/10.21105/joss.02382), [Espinoza & Jones 2021](https://ui.adsabs.harvard.edu/abs/2021arXiv210615687E/abstract)).
+This repository contains `twoface`, an exoplanet transit model for asymmetric planets transiting spotted stars. The code is named after the Batman villain Two-Face, reflecting its ability to model planets with asymmetric, two-sided silhouettes as they cross spotted, troublesome stellar surfaces. It builds upon the numerical integration framework and architecture of `spotrod` ([Béky, Kipping & Holman 2014](https://ui.adsabs.harvard.edu/abs/2014MNRAS.442.3686B/abstract)) and the geometry of `catwoman` ([Jones & Espinoza 2020](https://doi.org/10.21105/joss.02382), [Espinoza & Jones 2021](https://ui.adsabs.harvard.edu/abs/2021arXiv210615687E/abstract)).
 
 
 ## Installation
