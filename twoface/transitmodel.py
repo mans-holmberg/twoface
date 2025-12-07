@@ -35,7 +35,7 @@ class TransitParams:
 
 
 class TransitModel:
-    def __init__(self, params, t, num_rings=1500, limb_dark_function=None, use_spotrod=False):
+    def __init__(self, params, t, num_rings=1500, limb_dark_function=None, use_spotrod=True):
         self.params = params
         self.t = t
         self.num_ints = t.shape[0]
@@ -94,8 +94,6 @@ class TransitModel:
 
         spotx = np.sqrt(1.0 - spot_mu**2) * np.cos(spot_phi)
         spoty = np.sqrt(1.0 - spot_mu**2) * np.sin(spot_phi)
-        spotradius = spot_radius
-        spotcontrast = spot_f
 
         if limb_dark == 'quadratic':
             quadraticlimbdarkening(self.r, u, self.f)
@@ -112,8 +110,8 @@ class TransitModel:
         if (rp == rp2) and self.use_spotrod:
             _twoface._circleangle(self.r, rp, self.planetz, self.planetangle)
             _twoface._integratetransit(self.num_ints, self.num_rings, self.num_spots, self.planetx, self.planety, self.planetz, rp, self.r, self.f,
-                                             spotx, spoty, spotradius, spotcontrast, self.planetangle, self.model)
+                                             spotx, spoty, spot_radius, spot_f, self.planetangle, self.model)
         else:
             _twoface._integratetransit_asymmetric(self.num_ints, self.num_rings, self.num_spots, self.r, self.f, self.planetx, self.planety, self.planetz, self.psi, rp2, rp, 
-                                         spotx, spoty, spotradius, spotcontrast, self.spotcenterdistance, self.bounds, self.model)
+                                         spotx, spoty, spot_radius, spot_f, self.spotcenterdistance, self.bounds, self.model)
         return np.copy(self.model)
