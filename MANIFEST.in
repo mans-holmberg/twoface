@@ -1,0 +1,4 @@
+include pyproject.toml
+include setup.py
+recursive-include c_src *.c *.h *.pyx
+recursive-include twoface *.py
