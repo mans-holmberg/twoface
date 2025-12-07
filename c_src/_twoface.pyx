@@ -25,4 +25,3 @@ cpdef _circleangle(double[:] r, double p, double[:] z , double[:, :] answer):
 	cdef int i = 0
 	for i in range(m):
 		circleangle(&r[0], p, z[i], n, &answer[i][0])
-	# return answer
