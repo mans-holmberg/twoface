@@ -1,2 +1,4 @@
 numpy
-Cython
+Cython>=3.0
+setuptools>=61
+wheel
