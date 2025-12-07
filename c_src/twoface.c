@@ -611,7 +611,6 @@ void integratetransit_asymmetric(int m, int n, int k, double *restrict planetx, 
       double psi_p = (zM > 0.0) ? atan2(y_p, x_p) : 0.0;
 
       double delta = 0.0;
-      double value = 0.0;
       for (N = Nmin; N <= Nmax; N++) {
 
         double rN = *(r + N);
@@ -619,7 +618,6 @@ void integratetransit_asymmetric(int m, int n, int k, double *restrict planetx, 
         get_halfdisk_bounds(rN, zM, psi_p, p, phi, &nbounds, &bounds[0]);
         get_halfdisk_bounds(rN, zM, psi_p, p2, phi + M_PI, &nbounds, &bounds[0]);
 
-        double total_angle = 0.0;
         double total_angle_planet = 0.0;
 
         // Spot bounds: add for all spots that intersect this ring and are not full-ring
