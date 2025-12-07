@@ -1,31 +1,32 @@
 from setuptools import setup, Extension
-from Cython.Build import cythonize, build_ext
 import numpy
-import os
 
-from setuptools import setup, Extension
-from Cython.Build import cythonize
+try:
+    from Cython.Build import cythonize
+    USE_CYTHON = True
+except ImportError:
+    USE_CYTHON = False
+
+ext_src = "c_src/_twoface.pyx" if USE_CYTHON else "c_src/_twoface.c"
 
 extensions = [
     Extension(
         "twoface._twoface",
-        sources=[
-            "c_src/_twoface.pyx",  # Cython wrapper
-            "c_src/twoface.c",  # C code
-        ],
-        include_dirs=["c_src"],
+        sources=[ext_src, "c_src/twoface.c"],
+        include_dirs=["c_src", numpy.get_include()],
         extra_compile_args=["-O3", "-ffast-math"],
     )
 ]
+
+if USE_CYTHON:
+    extensions = cythonize(extensions)
 
 setup(name="twoface",
     version="0.1.0",
     author="Måns Holmberg",
     packages=["twoface"],
-    description="Transit light-curve modeling for asymmetric planets transiting spotted stars.",
-    ext_modules=cythonize(extensions),
-    include_dirs=[numpy.get_include()],
-    install_requires=["numpy", "Cython"],
+    description="Transit lightcurves for asymmetric planets transiting spotted stars",
+    ext_modules=extensions,
+    install_requires=["numpy"],
     zip_safe=False,
-    cmdclass={'build_ext': build_ext},
 )
